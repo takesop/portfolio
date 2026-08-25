@@ -146,7 +146,7 @@ function Project() {
               </div>
             </div>
             <a className="project-action project-action--site" href="https://www.behance.net/gallery/222146245/dizajn-igrovogo-hostinga" target="_blank" rel="noreferrer">
-              <span>Сайт</span>
+              <span>Кейс</span>
               <img src={externalLinkIcon} alt="" aria-hidden="true" />
             </a>
           </div>
