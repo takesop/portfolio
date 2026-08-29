@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import portrait from './assets/portrait.png'
 import genixGallery from './assets/genix-gallery.png'
@@ -204,6 +204,14 @@ function PicturesPage() {
 }
 
 function HomePage() {
+  useEffect(() => {
+    if (window.location.hash !== '#projects') return
+
+    window.requestAnimationFrame(() => {
+      document.getElementById('projects')?.scrollIntoView({ block: 'start', behavior: 'auto' })
+    })
+  }, [])
+
   return (
     <main id="top">
       <div className="page-shell">
