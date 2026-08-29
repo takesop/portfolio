@@ -97,7 +97,9 @@ function Project() {
             </a>
           </div>
           <div className="gallery">
-            <img src={wellpinGallery} alt="Интерфейсы сервиса WellPin для онлайн-бронирования встреч" />
+            <a className="gallery-link" href="https://wellpin.io" target="_blank" rel="noreferrer">
+              <img src={wellpinGallery} alt="Интерфейсы сервиса WellPin для онлайн-бронирования встреч" />
+            </a>
           </div>
         </article>
         <article className="project-card">
@@ -115,7 +117,9 @@ function Project() {
             </a>
           </div>
           <div className="gallery">
-            <img src={atomicbotGallery} alt="Интерфейсы сервиса AtomicBot для управления AI-агентом" />
+            <a className="gallery-link" href="https://atomicbot.ai" target="_blank" rel="noreferrer">
+              <img src={atomicbotGallery} alt="Интерфейсы сервиса AtomicBot для управления AI-агентом" />
+            </a>
           </div>
         </article>
         <article className="project-card">
@@ -133,7 +137,9 @@ function Project() {
             </a>
           </div>
           <div className="gallery">
-            <img src={minuteslinkGallery} alt="Интерфейс сервиса MinutesLink для AI-саммари встреч" />
+            <a className="gallery-link" href="https://minuteslink.com" target="_blank" rel="noreferrer">
+              <img src={minuteslinkGallery} alt="Интерфейс сервиса MinutesLink для AI-саммари встреч" />
+            </a>
           </div>
         </article>
         <article className="project-card">
@@ -151,7 +157,9 @@ function Project() {
             </a>
           </div>
           <div className="gallery">
-            <img src={cloudusGallery} alt="Интерфейс хостинга игровых серверов Cloudus" />
+            <a className="gallery-link" href="https://www.behance.net/gallery/222146245/dizajn-igrovogo-hostinga" target="_blank" rel="noreferrer">
+              <img src={cloudusGallery} alt="Интерфейс хостинга игровых серверов Cloudus" />
+            </a>
           </div>
         </article>
       </div>
