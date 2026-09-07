@@ -9,6 +9,7 @@ export default defineConfig({
       input: {
         main: 'index.html',
         fallback: '404.html',
+        platformAI: 'platform-ai/index.html',
       },
     },
   },
