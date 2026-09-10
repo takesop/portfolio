@@ -152,7 +152,7 @@ function SectionHeading({ title, description, small = false, centered = false, a
 function Header({ showNotice }) {
   return <header className="pa-header" id="top"><div className="pa-container pa-header-inner">
     <a className="pa-brand" href="#top">MESSENGER</a>
-    <nav aria-label="Навигация по странице"><a href="#features">Возможности</a><a href="#assistant">Ассистент</a><a href="#examples">Примеры</a><a href="#data">Данные</a><a href="#pricing">Цены</a></nav>
+    <nav aria-label="Навигация по странице"><a className="pa-nav-dropdown" href="#features">Продукт</a><a className="pa-nav-dropdown" href="#examples">Решения</a><a href="#features">Возможности</a><a href="#assistant">Ассистент</a><a href="#examples">Примеры</a><a href="#data">Данные</a><a href="#pricing">Цены</a></nav>
     <div className="pa-header-actions"><Button secondary onClick={() => showNotice('Войти')}>Войти</Button><Button>Демо</Button></div>
   </div></header>
 }
