@@ -272,7 +272,7 @@ function HomePage() {
             <img className="portrait" src={portrait} alt="Портрет Рафаэля" />
             <div className="hero-copy">
               <p className="eyebrow">Привет, я Рафаэль</p>
-              <h1 id="intro-title"><span>Дизайн и разработка</span><span>сайтов для вашего бизнеса</span></h1>
+              <h1 id="intro-title"><span>Дизайню и разрабатываю</span><span>сайты для вашего бизнеса</span></h1>
               <p className="lead">Создаю сайты с нуля: от продуманной структуры и дизайна<br className="lead-break" /> до разработки и запуска. Делаю упор на удобство, простоту<br className="lead-break" /> и пользу для вашего бизнеса.</p>
             </div>
             <ContactButton />
