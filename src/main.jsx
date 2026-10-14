@@ -2,6 +2,8 @@ import { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import portrait from './assets/portrait.png'
 import genixGallery from './assets/genix-gallery.png'
+import pomniyaLogo from './assets/pomniya-logo.png'
+import pomniyaGallery from './assets/pomniya-gallery.jpg'
 import logo from './assets/logo.svg'
 import telegram from './assets/telegram.svg'
 import genixLogo from './assets/genix-logo.png'
@@ -43,9 +45,34 @@ function ContactButton({ compact = false }) {
   )
 }
 
+function useScrollReveal() {
+  useEffect(() => {
+    const revealItems = document.querySelectorAll('[data-reveal]')
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      revealItems.forEach((item) => item.classList.add('is-visible'))
+      return
+    }
+
+    revealItems.forEach((item) => item.classList.add('reveal-pending'))
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('is-visible')
+        observer.unobserve(entry.target)
+      })
+    }, { threshold: 0.12, rootMargin: '0px 0px -36px 0px' })
+
+    revealItems.forEach((item) => observer.observe(item))
+    return () => observer.disconnect()
+  }, [])
+}
+
 function Header() {
   return (
-    <header className="site-header">
+    <header className="site-header" data-reveal>
       <nav aria-label="Основная навигация">
         <div className="nav-links">
           <a className="brand" href="/" aria-label="На главную"><img src={logo} alt="" /></a>
@@ -62,9 +89,29 @@ function Header() {
 function Project() {
   return (
     <section className="projects" id="projects" aria-labelledby="projects-title">
-      <h2 id="projects-title">Проекты</h2>
+      <h2 id="projects-title" data-reveal>Проекты</h2>
       <div className="projects-list">
-        <article className="project-card">
+        <article className="project-card" data-reveal>
+          <div className="project-meta">
+            <div className="project-title-row">
+              <img className="project-logo" src={pomniyaLogo} alt="Логотип Помния" />
+              <div>
+                <h3>Сервис общего фотоальбома для событий</h3>
+                <p><span>Помния</span><i>•</i><span>2026</span></p>
+              </div>
+            </div>
+            <a className="project-action project-action--site" href="https://pomniya.ru" target="_blank" rel="noreferrer">
+              <span>Сайт</span>
+              <img src={externalLinkIcon} alt="" aria-hidden="true" />
+            </a>
+          </div>
+          <div className="gallery">
+            <a className="gallery-link" href="https://pomniya.ru" target="_blank" rel="noreferrer">
+              <img src={pomniyaGallery} alt="Дизайн сервиса Помния — общий фотоальбом для событий" />
+            </a>
+          </div>
+        </article>
+        <article className="project-card" data-reveal>
           <div className="project-meta">
             <div className="project-title-row">
               <img className="project-logo" src={genixLogo} alt="Логотип Genix" />
@@ -82,7 +129,7 @@ function Project() {
             <img src={genixGallery} alt="Экраны мобильного приложения Genix для генерации изображений" />
           </div>
         </article>
-        <article className="project-card">
+        <article className="project-card" data-reveal>
           <div className="project-meta">
             <div className="project-title-row">
               <img className="project-logo" src={wellpinLogo} alt="Логотип WellPin" />
@@ -102,7 +149,7 @@ function Project() {
             </a>
           </div>
         </article>
-        <article className="project-card">
+        <article className="project-card" data-reveal>
           <div className="project-meta">
             <div className="project-title-row">
               <img className="project-logo" src={atomicbotLogo} alt="Логотип AtomicBot" />
@@ -122,7 +169,7 @@ function Project() {
             </a>
           </div>
         </article>
-        <article className="project-card">
+        <article className="project-card" data-reveal>
           <div className="project-meta">
             <div className="project-title-row">
               <img className="project-logo" src={minuteslinkLogo} alt="Логотип MinutesLink" />
@@ -142,7 +189,7 @@ function Project() {
             </a>
           </div>
         </article>
-        <article className="project-card">
+        <article className="project-card" data-reveal>
           <div className="project-meta">
             <div className="project-title-row">
               <img className="project-logo" src={cloudusLogo} alt="Логотип Cloudus" />
@@ -175,24 +222,26 @@ function App() {
 
 function Footer() {
   return (
-    <footer>
+    <footer data-reveal>
       <span>@2026, Yolips</span><i>•</i><a href="https://t.me/Yolips" target="_blank" rel="noreferrer">Telegram</a><i>•</i><a href="mailto:yolipses@gmail.com">yolipses@gmail.com</a>
     </footer>
   )
 }
 
 function PicturesPage() {
+  useScrollReveal()
+
   return (
     <main id="top" className="pictures-page">
       <Header />
       <div className="pictures-shell">
-        <section className="pictures-intro" aria-labelledby="pictures-title">
+        <section className="pictures-intro" aria-labelledby="pictures-title" data-reveal>
           <img src={logo} alt="" aria-hidden="true" />
           <h1 id="pictures-title">Малая часть моих коммерческих<br />и личных работ с проектов</h1>
         </section>
         <section className="pictures-grid" aria-label="Галерея работ">
           {pictures.map((picture, index) => (
-            <div className={`picture-card ${index === 2 ? 'picture-card--wide' : ''}`} key={picture}>
+            <div className={`picture-card ${index === 2 ? 'picture-card--wide' : ''}`} key={picture} data-reveal>
               <img src={picture} alt={`Работа ${index + 1}`} />
             </div>
           ))}
@@ -204,6 +253,8 @@ function PicturesPage() {
 }
 
 function HomePage() {
+  useScrollReveal()
+
   useEffect(() => {
     if (window.location.hash !== '#projects') return
 
@@ -217,18 +268,18 @@ function HomePage() {
       <div className="page-shell">
         <section className="intro" aria-labelledby="intro-title">
           <Header />
-          <div className="hero-content">
+          <div className="hero-content" data-reveal>
             <img className="portrait" src={portrait} alt="Портрет Рафаэля" />
             <div className="hero-copy">
               <p className="eyebrow">Привет, я Рафаэль</p>
-              <h1 id="intro-title"><span>UX/UI дизайнер</span>{' '}<span>для&nbsp;ваших проектов</span></h1>
-              <p className="lead">Работаю с сайтами, интерфейсами и приложениями. Делаю упор на простоту, удобство и ощутимую пользу для вашего бизнеса</p>
+              <h1 id="intro-title"><span>Дизайн и разработка</span><span>сайтов для вашего бизнеса</span></h1>
+              <p className="lead">Создаю сайты с нуля: от продуманной структуры и дизайна<br className="lead-break" /> до разработки и запуска. Делаю упор на удобство, простоту<br className="lead-break" /> и пользу для вашего бизнеса.</p>
             </div>
             <ContactButton />
           </div>
         </section>
         <Project />
-        <section className="contact-section" aria-labelledby="contact-title">
+        <section className="contact-section" aria-labelledby="contact-title" data-reveal>
           <img className="contact-flower" src={ctaFlower} alt="" aria-hidden="true" />
           <div className="contact-copy">
             <h2 id="contact-title">Обсудим проект?</h2>
